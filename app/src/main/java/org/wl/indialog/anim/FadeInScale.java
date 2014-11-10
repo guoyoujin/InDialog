@@ -17,6 +17,11 @@ public class FadeInScale extends FadeScale {
         setInterpolator(new DecelerateInterpolator());
     }
 
+    public FadeInScale(int d) {
+        super(d);
+        setInterpolator(new DecelerateInterpolator());
+    }
+
     @Override
     protected float getScaleFrom() {
         return 0.75f;

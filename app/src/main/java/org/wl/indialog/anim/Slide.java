@@ -26,6 +26,14 @@ public abstract class Slide extends AnimationSet {
         initialize();
     }
 
+    public Slide(int duration) {
+        super(true);
+        mFadeDuration = duration;
+        mTranslateDuration = duration;
+
+        initialize();
+    }
+
     public Slide(int fade, int translate) {
         super(true);
         mFadeDuration = fade;

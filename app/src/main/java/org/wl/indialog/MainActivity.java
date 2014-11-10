@@ -50,6 +50,13 @@ public class MainActivity extends ActionBarActivity {
                 InEmptyDialog.build(MainActivity.this).setSlideType(InEmptyDialog.SlideType.FADE_IN_OUT).show();
             }
         });
+        btn = (Button) findViewById(R.id.newspaper);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InEmptyDialog.build(MainActivity.this).setSlideType(InEmptyDialog.SlideType.NEWSPAPER).show();
+            }
+        });
     }
 
 

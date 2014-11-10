@@ -11,6 +11,8 @@ import android.widget.FrameLayout;
 
 import org.wl.indialog.anim.FadeInScale;
 import org.wl.indialog.anim.FadeOutScale;
+import org.wl.indialog.anim.NewspaperIn;
+import org.wl.indialog.anim.NewspaperOut;
 import org.wl.indialog.anim.SlideInBottom;
 import org.wl.indialog.anim.SlideInLeft;
 import org.wl.indialog.anim.SlideInRight;
@@ -30,6 +32,7 @@ public class InEmptyDialog extends InBaseDialog {
         BOTTOM_TO_TOP,
         TOP_TO_BOTTOM,
         FADE_IN_OUT,
+        NEWSPAPER,
     }
 
     private SlideType slideType = SlideType.LEFT_TO_RIGHT;
@@ -78,7 +81,9 @@ public class InEmptyDialog extends InBaseDialog {
             case BOTTOM_TO_TOP:
                 return new SlideInBottom(200, 200);
             case FADE_IN_OUT:
-                return new FadeInScale(150, 150);
+                return new FadeInScale(150);
+            case NEWSPAPER:
+                return new NewspaperIn(200);
         }
         return new SlideInLeft(200, 200);
     }
@@ -95,7 +100,9 @@ public class InEmptyDialog extends InBaseDialog {
             case BOTTOM_TO_TOP:
                 return new SlideOutTop(200, 200);
             case FADE_IN_OUT:
-                return new FadeOutScale(150, 150);
+                return new FadeOutScale(150);
+            case NEWSPAPER:
+                return new NewspaperOut(200);
         }
         return new SlideOutRight(200, 200);
     }

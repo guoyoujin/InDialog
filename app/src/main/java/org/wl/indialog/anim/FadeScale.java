@@ -24,6 +24,13 @@ public abstract class FadeScale extends AnimationSet {
         initialize();
     }
 
+    public FadeScale(int d) {
+        super(true);
+        mFadeDuration = d;
+        mScaleDuration = d;
+        initialize();
+    }
+
     public FadeScale(int fade, int scale) {
         super(true);
 
