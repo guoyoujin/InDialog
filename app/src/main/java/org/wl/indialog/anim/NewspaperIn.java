@@ -20,11 +20,11 @@ public class NewspaperIn extends Newspaper {
 
     @Override
     protected int getRotationFrom() {
-        return 0;
+        return -180;
     }
 
     @Override
     protected int getRotationTo() {
-        return 1080;
+        return 720;
     }
 }

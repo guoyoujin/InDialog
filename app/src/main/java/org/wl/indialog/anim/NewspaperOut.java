@@ -24,7 +24,7 @@ public class NewspaperOut extends Newspaper {
 
     @Override
     protected int getRotationFrom() {
-        return 1080;
+        return 900;
     }
 
     @Override

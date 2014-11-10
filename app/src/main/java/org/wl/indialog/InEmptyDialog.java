@@ -3,11 +3,13 @@ package org.wl.indialog;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import org.wl.indialog.anim.FadeInScale;
 import org.wl.indialog.anim.FadeOutScale;
@@ -56,7 +58,11 @@ public class InEmptyDialog extends InBaseDialog {
     protected void initDialogContent(FrameLayout parent) {
         float density = getResources().getDisplayMetrics().density;
 
-        View v = new View(mActivity);
+        TextView v = new TextView(mActivity);
+        v.setText("Hello World");
+        v.setTextSize(50);
+        v.setTextColor(Color.BLUE);
+        v.setGravity(Gravity.CENTER);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams((int) (300 * density), (int) (200 * density));
         v.setLayoutParams(params);
 
@@ -81,9 +87,9 @@ public class InEmptyDialog extends InBaseDialog {
             case BOTTOM_TO_TOP:
                 return new SlideInBottom(200, 200);
             case FADE_IN_OUT:
-                return new FadeInScale(150);
+                return new FadeInScale(200);
             case NEWSPAPER:
-                return new NewspaperIn(200);
+                return new NewspaperIn(300);
         }
         return new SlideInLeft(200, 200);
     }
@@ -100,9 +106,9 @@ public class InEmptyDialog extends InBaseDialog {
             case BOTTOM_TO_TOP:
                 return new SlideOutTop(200, 200);
             case FADE_IN_OUT:
-                return new FadeOutScale(150);
+                return new FadeOutScale(200);
             case NEWSPAPER:
-                return new NewspaperOut(200);
+                return new NewspaperOut(300);
         }
         return new SlideOutRight(200, 200);
     }
@@ -110,14 +116,14 @@ public class InEmptyDialog extends InBaseDialog {
     @Override
     public Animation getBackgroundShowAnimation() {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
-        alphaAnimation.setDuration(200);
+        alphaAnimation.setDuration(300);
         return alphaAnimation;
     }
 
     @Override
     public Animation getBackgroundDismissAnimation() {
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
-        alphaAnimation.setDuration(200);
+        alphaAnimation.setDuration(300);
         alphaAnimation.setFillAfter(true);
         return alphaAnimation;
     }

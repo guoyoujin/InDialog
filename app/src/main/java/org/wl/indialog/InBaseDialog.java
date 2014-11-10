@@ -2,7 +2,9 @@ package org.wl.indialog;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,7 @@ import android.widget.FrameLayout;
  */
 public abstract class InBaseDialog extends FrameLayout {
 
-    protected int mBackgroundColor = Color.parseColor("#99999999");
+    protected int mBackgroundColor = Color.parseColor("#99666666");
     protected Activity mActivity;
 
     protected FrameLayout mDialog;
@@ -59,6 +61,22 @@ public abstract class InBaseDialog extends FrameLayout {
         setVisibility(VISIBLE);
         Animation showAnimation = getShowAnimation();
         if (showAnimation != null) {
+            showAnimation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    mDialog.clearAnimation();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
             mDialog.startAnimation(showAnimation);
         }
         Animation backgroundShowAnimation = getBackgroundShowAnimation();
@@ -102,19 +120,31 @@ public abstract class InBaseDialog extends FrameLayout {
     }
 
     private void initializeTouch() {
+        setFocusable(true);
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
             }
         });
-
         mDialog.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        Log.e("!!!","DOWN");
+        if(event.getAction()==KeyEvent.ACTION_DOWN &&
+                event.getKeyCode()==KeyEvent.KEYCODE_BACK &&
+                isShown() && mDialog.getAnimation()==null){
+            dismiss();
+            return true;
+        }
+        return super.dispatchKeyEvent(event);
     }
 
     protected abstract void initDialogContent(FrameLayout parent);
