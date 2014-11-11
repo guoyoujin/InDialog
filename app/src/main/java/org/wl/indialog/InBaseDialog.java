@@ -2,7 +2,6 @@ package org.wl.indialog;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -16,7 +15,8 @@ import android.widget.FrameLayout;
  */
 public abstract class InBaseDialog extends FrameLayout {
 
-    protected int mBackgroundColor = Color.parseColor("#99666666");
+    protected int mBackgroundColor = Color.parseColor("#79666666");
+    //    protected int mBackgroundColor = Color.TRANSPARENT;
     protected Activity mActivity;
 
     protected FrameLayout mDialog;
@@ -34,7 +34,8 @@ public abstract class InBaseDialog extends FrameLayout {
     private void initializeBaseView() {
         float density = mActivity.getResources().getDisplayMetrics().density;
 
-        ViewGroup.LayoutParams rootParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        ViewGroup.LayoutParams rootParams = new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         setLayoutParams(rootParams);
         setBackgroundColor(mBackgroundColor);
 
@@ -55,8 +56,7 @@ public abstract class InBaseDialog extends FrameLayout {
 
     public void show() {
         clearAnimations();
-        FrameLayout activityContent = (FrameLayout) mActivity.findViewById(android.R.id.content);
-        activityContent.addView(this);
+        attachToActivity();
 
         setVisibility(VISIBLE);
         Animation showAnimation = getShowAnimation();
@@ -96,7 +96,7 @@ public abstract class InBaseDialog extends FrameLayout {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    removeFromParent();
+                    detachFromActivity();
                 }
 
                 @Override
@@ -106,7 +106,7 @@ public abstract class InBaseDialog extends FrameLayout {
             });
             mDialog.startAnimation(dismissAnimation);
         } else {
-            removeFromParent();
+            detachFromActivity();
         }
         Animation backgroundDismissAnimation = getBackgroundDismissAnimation();
         if (backgroundDismissAnimation != null) {
@@ -114,7 +114,12 @@ public abstract class InBaseDialog extends FrameLayout {
         }
     }
 
-    protected void removeFromParent() {
+    protected void attachToActivity() {
+        FrameLayout activityContent = (FrameLayout) mActivity.findViewById(android.R.id.content).getRootView();
+        activityContent.addView(this);
+    }
+
+    protected void detachFromActivity() {
         ViewGroup parent = (ViewGroup) InBaseDialog.this.getParent();
         parent.removeView(InBaseDialog.this);
     }
@@ -124,7 +129,10 @@ public abstract class InBaseDialog extends FrameLayout {
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
+                if (InBaseDialog.this.isShown() &&
+                        mDialog.getAnimation() == null) {
+                    dismiss();
+                }
             }
         });
         mDialog.setOnTouchListener(new OnTouchListener() {
@@ -137,10 +145,9 @@ public abstract class InBaseDialog extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        Log.e("!!!","DOWN");
-        if(event.getAction()==KeyEvent.ACTION_DOWN &&
-                event.getKeyCode()==KeyEvent.KEYCODE_BACK &&
-                isShown() && mDialog.getAnimation()==null){
+        if (event.getAction() == KeyEvent.ACTION_DOWN &&
+                event.getKeyCode() == KeyEvent.KEYCODE_BACK &&
+                isShown() && mDialog.getAnimation() == null) {
             dismiss();
             return true;
         }

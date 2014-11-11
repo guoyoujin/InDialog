@@ -1,7 +1,9 @@
 package org.wl.indialog;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,6 +57,20 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 InEmptyDialog.build(MainActivity.this).setSlideType(InEmptyDialog.SlideType.NEWSPAPER).show();
+            }
+        });
+        btn = (Button) findViewById(R.id.test);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CustomPopupWindow pop = new CustomPopupWindow(MainActivity.this);
+                pop.showAtLocation(findViewById(R.id.test), Gravity.CENTER, 0, 0);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        pop.dismiss();
+                    }
+                }, 1000);
             }
         });
     }

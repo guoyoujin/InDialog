@@ -4,12 +4,11 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import org.wl.indialog.anim.FadeInScale;
 import org.wl.indialog.anim.FadeOutScale;
@@ -28,24 +27,10 @@ import org.wl.indialog.anim.SlideOutTop;
  * Created by wiky on 11/9/14.
  */
 public class InEmptyDialog extends InBaseDialog {
-    public enum SlideType {
-        LEFT_TO_RIGHT,
-        RIGHT_TO_LEFT,
-        BOTTOM_TO_TOP,
-        TOP_TO_BOTTOM,
-        FADE_IN_OUT,
-        NEWSPAPER,
-    }
-
     private SlideType slideType = SlideType.LEFT_TO_RIGHT;
 
     protected InEmptyDialog(Activity ac) {
         super(ac);
-    }
-
-    public InEmptyDialog setSlideType(SlideType type) {
-        slideType = type;
-        return this;
     }
 
     public static InEmptyDialog build(Activity activity) {
@@ -54,11 +39,16 @@ public class InEmptyDialog extends InBaseDialog {
         return emptyDialog;
     }
 
+    public InEmptyDialog setSlideType(SlideType type) {
+        slideType = type;
+        return this;
+    }
+
     @Override
     protected void initDialogContent(FrameLayout parent) {
         float density = getResources().getDisplayMetrics().density;
 
-        TextView v = new TextView(mActivity);
+        EditText v = new EditText(mActivity);
         v.setText("Hello World");
         v.setTextSize(50);
         v.setTextColor(Color.BLUE);
@@ -71,6 +61,8 @@ public class InEmptyDialog extends InBaseDialog {
         bg.setColor(Color.WHITE);
         bg.setCornerRadius(20);
         v.setBackgroundDrawable(bg);
+
+        v.requestFocus();
 
         parent.addView(v);
     }
@@ -126,5 +118,14 @@ public class InEmptyDialog extends InBaseDialog {
         alphaAnimation.setDuration(300);
         alphaAnimation.setFillAfter(true);
         return alphaAnimation;
+    }
+
+    public enum SlideType {
+        LEFT_TO_RIGHT,
+        RIGHT_TO_LEFT,
+        BOTTOM_TO_TOP,
+        TOP_TO_BOTTOM,
+        FADE_IN_OUT,
+        NEWSPAPER,
     }
 }
