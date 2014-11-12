@@ -1,5 +1,4 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
@@ -27,42 +26,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="LEFT TO RIGHT"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
 
             <Button
                 android:id="@+id/right_to_left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="RIGHT TO LEFT"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
 
             <Button
                 android:id="@+id/bottom_to_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="BOTTOM TO TOP"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
 
             <Button
                 android:id="@+id/top_to_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TOP TO BOTTOM"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
 
             <Button
                 android:id="@+id/fade_in_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="FADE IN OUT"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
 
             <Button
                 android:id="@+id/newspaper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="NEWSPAPER"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
 
             <Button
                 android:id="@+id/hflip"
@@ -72,14 +71,21 @@
                 android:textSize="30dp" />
 
             <Button
+                android:id="@+id/scaled_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SUPER SCALED"
+                android:textSize="30dp" />
+
+            <Button
                 android:id="@+id/test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TEST"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
 
-            </LinearLayout>
+        </LinearLayout>
 
-        </ScrollView>
+    </ScrollView>
 
 </RelativeLayout>

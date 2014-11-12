@@ -66,6 +66,13 @@ public class MainActivity extends ActionBarActivity {
                 InEmptyDialog.build(MainActivity.this).setSlideType(InEmptyDialog.SlideType.HFLIP).show();
             }
         });
+        btn = (Button) findViewById(R.id.scaled_in);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InEmptyDialog.build(MainActivity.this).setSlideType(InEmptyDialog.SlideType.SUPER_SCALED).show();
+            }
+        });
         btn = (Button) findViewById(R.id.test);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

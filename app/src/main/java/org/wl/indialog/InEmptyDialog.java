@@ -16,6 +16,8 @@ import org.wl.indialog.anim.FlipInRIght;
 import org.wl.indialog.anim.FlipOutLeft;
 import org.wl.indialog.anim.NewspaperIn;
 import org.wl.indialog.anim.NewspaperOut;
+import org.wl.indialog.anim.ScaledIn;
+import org.wl.indialog.anim.ScaledOut;
 import org.wl.indialog.anim.SlideInBottom;
 import org.wl.indialog.anim.SlideInLeft;
 import org.wl.indialog.anim.SlideInRight;
@@ -86,6 +88,8 @@ public class InEmptyDialog extends InBaseDialog {
                 return new NewspaperIn(300);
             case HFLIP:
                 return new FlipInRIght(200);
+            case SUPER_SCALED:
+                return new ScaledIn(200);
         }
         return new SlideInLeft(200, 200);
     }
@@ -107,6 +111,8 @@ public class InEmptyDialog extends InBaseDialog {
                 return new NewspaperOut(300);
             case HFLIP:
                 return new FlipOutLeft(200);
+            case SUPER_SCALED:
+                return new ScaledOut(200);
         }
         return new SlideOutRight(200, 200);
     }
@@ -134,5 +140,6 @@ public class InEmptyDialog extends InBaseDialog {
         FADE_IN_OUT,
         NEWSPAPER,
         HFLIP,
+        SUPER_SCALED,
     }
 }
