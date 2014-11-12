@@ -3,7 +3,7 @@ package org.wl.indialog.anim;
 /**
  * Created by wiky on 11/11/14.
  */
-public class FlipLeftIn extends Flip {
+public class FlipLeftIn extends FlipIn {
     public FlipLeftIn(int d) {
         super(d);
     }

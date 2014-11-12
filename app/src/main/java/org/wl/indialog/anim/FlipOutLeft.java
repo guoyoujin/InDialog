@@ -3,9 +3,9 @@ package org.wl.indialog.anim;
 /**
  * Created by wiky on 11/11/14.
  */
-public class FlipLeftOut extends Flip {
+public class FlipOutLeft extends FlipOut {
 
-    public FlipLeftOut(int d) {
+    public FlipOutLeft(int d) {
         super(d);
     }
 

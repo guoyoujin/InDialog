@@ -3,9 +3,9 @@ package org.wl.indialog.anim;
 /**
  * Created by wiky on 11/11/14.
  */
-public class FlipRightIn extends Flip {
+public class FlipInRIght extends FlipIn {
 
-    public FlipRightIn(int d) {
+    public FlipInRIght(int d) {
         super(d);
     }
 
@@ -18,4 +18,5 @@ public class FlipRightIn extends Flip {
     protected float getDegress(float time) {
         return 90 - 90 * time;
     }
+
 }

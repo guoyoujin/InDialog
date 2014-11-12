@@ -35,7 +35,7 @@ public abstract class Flip extends Animation {
 
         float degress = getDegress(interploterTime);
 
-        t.setAlpha(interploterTime * interploterTime);
+        t.setAlpha(getAlpha(interploterTime));
 
         Camera camera = new Camera();
 
@@ -55,6 +55,8 @@ public abstract class Flip extends Animation {
     protected abstract FlipDirection getFlipDirection();
 
     protected abstract float getDegress(float time);
+
+    protected abstract float getAlpha(float time);
 
     @Override
     public void initialize(int width, int height, int parentWidth, int parentHeight) {
